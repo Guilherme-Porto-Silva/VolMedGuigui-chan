@@ -1,10 +1,11 @@
-package met.vol.api.DTO;
+package met.vol.api.DTO.medico;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import met.vol.api.DTO.DadosEndereco;
 import met.vol.api.model.Especialidade;
 import met.vol.api.model.Medico;
 

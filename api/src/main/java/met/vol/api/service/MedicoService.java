@@ -1,16 +1,13 @@
 package met.vol.api.service;
 
-import jakarta.validation.Valid;
-import met.vol.api.DTO.DadosAtualizacaoMedico;
-import met.vol.api.DTO.DadosCadastroMedico;
-import met.vol.api.DTO.DadosExibicaoMedico;
+import met.vol.api.DTO.medico.DadosAtualizacaoMedico;
+import met.vol.api.DTO.medico.DadosCadastroMedico;
+import met.vol.api.DTO.medico.DadosExibicaoMedico;
 import met.vol.api.model.Medico;
 import met.vol.api.repository.MedicoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
 
 public class MedicoService {
 
@@ -21,7 +18,7 @@ public class MedicoService {
         BANCO = banco;
     }
 
-    @Transactional public void cadastrar (DadosCadastroMedico json) {
+    @Transactional public Medico cadastrar (DadosCadastroMedico json) {
 
         Medico medico = new Medico(json);
 
@@ -33,6 +30,8 @@ public class MedicoService {
         System.out.println("\nFoi guardado, no banco de dados, um médico cadastrado da seguinte maneira:");
 
         System.out.println(medico);
+
+        return medico;
     }
 
     public Page<DadosExibicaoMedico> ler (Pageable p) {
@@ -46,7 +45,16 @@ public class MedicoService {
         return medicos;
     }
 
-    @Transactional public void atualizar (DadosAtualizacaoMedico json) {
+    public Medico ler (Long id) {
+
+        var medico = BANCO.getReferenceById(id);
+
+        System.out.println("\nFornecendo o médico " + medico.getNome());
+
+        return medico;
+    }
+
+    @Transactional public Medico atualizar (DadosAtualizacaoMedico json) {
 
         Medico atualizado = BANCO.getReferenceById(json.id());
 
@@ -76,6 +84,8 @@ public class MedicoService {
 
             atualizado.setEmail(novoEmail);
         }
+
+        return atualizado;
     }
 
     @Transactional public void exclusaoFisica (Long id) {

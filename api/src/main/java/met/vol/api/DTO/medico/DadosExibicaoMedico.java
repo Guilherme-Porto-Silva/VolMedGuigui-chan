@@ -1,4 +1,4 @@
-package met.vol.api.DTO;
+package met.vol.api.DTO.medico;
 
 import met.vol.api.model.Especialidade;
 import met.vol.api.model.Medico;

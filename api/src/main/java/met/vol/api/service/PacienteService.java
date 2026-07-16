@@ -1,8 +1,8 @@
 package met.vol.api.service;
 
-import met.vol.api.DTO.DadosAtualizacaoPaciente;
-import met.vol.api.DTO.DadosCadastroPaciente;
-import met.vol.api.DTO.DadosListagemPaciente;
+import met.vol.api.DTO.paciente.DadosAtualizacaoPaciente;
+import met.vol.api.DTO.paciente.DadosCadastroPaciente;
+import met.vol.api.DTO.paciente.DadosListagemPaciente;
 import met.vol.api.model.Paciente;
 import met.vol.api.repository.PacienteRepository;
 import org.springframework.data.domain.Page;
@@ -15,7 +15,7 @@ public class PacienteService {
 
     public PacienteService (PacienteRepository banco) { BANCO = banco; }
 
-    public void cadastrar (DadosCadastroPaciente json) {
+    public Paciente cadastrar (DadosCadastroPaciente json) {
 
         Paciente paciente = new Paciente(json);
 
@@ -24,6 +24,8 @@ public class PacienteService {
         System.out.println("\nFoi guardado, no banco de dados, um paciente cadastrado da seguinte maneira:");
 
         System.out.println(paciente);
+
+        return paciente;
     }
 
     public Page<DadosListagemPaciente> ler (Pageable p) {
@@ -35,6 +37,15 @@ public class PacienteService {
         pacientes.forEach(System.out::println);
 
         return pacientes;
+    }
+
+    public Paciente ler (Long id) {
+
+        var paciente = BANCO.getReferenceById(id);
+
+        System.out.println("\nFornecendo o paciente " + paciente.getNome());
+
+        return paciente;
     }
 
     @Transactional public void atualizar (DadosAtualizacaoPaciente dados) {

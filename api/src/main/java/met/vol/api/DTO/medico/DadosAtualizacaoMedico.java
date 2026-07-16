@@ -1,4 +1,4 @@
-package met.vol.api.DTO;
+package met.vol.api.DTO.medico;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

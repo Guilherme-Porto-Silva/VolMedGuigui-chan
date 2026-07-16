@@ -1,4 +1,4 @@
-package met.vol.api.DTO;
+package met.vol.api.DTO.paciente;
 
 import jakarta.validation.constraints.NotNull;
 import met.vol.api.model.Paciente;

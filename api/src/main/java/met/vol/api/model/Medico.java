@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import met.vol.api.DTO.DadosCadastroMedico;
+import met.vol.api.DTO.medico.DadosCadastroMedico;
 import met.vol.api.service.Tecnico;
 
 @Entity @Getter @Setter @AllArgsConstructor @EqualsAndHashCode(of = "id") public class Medico {
