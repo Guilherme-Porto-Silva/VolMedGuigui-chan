@@ -1,4 +1,4 @@
-package met.vol.api.model;
+package met.vol.api.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 

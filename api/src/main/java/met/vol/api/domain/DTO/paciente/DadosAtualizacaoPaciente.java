@@ -1,7 +1,7 @@
-package met.vol.api.DTO.paciente;
+package met.vol.api.domain.DTO.paciente;
 
 import jakarta.validation.constraints.NotNull;
-import met.vol.api.model.Paciente;
+import met.vol.api.domain.model.Paciente;
 
 public record DadosAtualizacaoPaciente (@NotNull Long id, String nome, String telefone) {
 

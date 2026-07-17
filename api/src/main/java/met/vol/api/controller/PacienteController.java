@@ -1,12 +1,11 @@
 package met.vol.api.controller;
 
 import jakarta.validation.Valid;
-import met.vol.api.DTO.medico.DadosDetalhamentoMedico;
-import met.vol.api.DTO.paciente.DadosAtualizacaoPaciente;
-import met.vol.api.DTO.paciente.DadosCadastroPaciente;
-import met.vol.api.DTO.paciente.DadosDetalhamentoPaciente;
-import met.vol.api.DTO.paciente.DadosListagemPaciente;
-import met.vol.api.service.PacienteService;
+import met.vol.api.domain.DTO.paciente.DadosAtualizacaoPaciente;
+import met.vol.api.domain.DTO.paciente.DadosCadastroPaciente;
+import met.vol.api.domain.DTO.paciente.DadosDetalhamentoPaciente;
+import met.vol.api.domain.DTO.paciente.DadosListagemPaciente;
+import met.vol.api.domain.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

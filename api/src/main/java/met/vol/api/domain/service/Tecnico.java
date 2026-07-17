@@ -1,4 +1,4 @@
-package met.vol.api.service;
+package met.vol.api.domain.service;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

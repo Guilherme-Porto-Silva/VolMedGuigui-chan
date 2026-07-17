@@ -1,8 +1,8 @@
-package met.vol.api.DTO.medico;
+package met.vol.api.domain.DTO.medico;
 
-import met.vol.api.DTO.DadosEndereco;
-import met.vol.api.model.Especialidade;
-import met.vol.api.model.Medico;
+import met.vol.api.domain.DTO.DadosEndereco;
+import met.vol.api.domain.model.Especialidade;
+import met.vol.api.domain.model.Medico;
 
 public record DadosDetalhamentoMedico (String nome, String email, String crm, String telefone, Especialidade especialidade, DadosEndereco endereco) {
 

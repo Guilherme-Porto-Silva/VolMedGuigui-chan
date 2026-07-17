@@ -1,8 +1,8 @@
-package met.vol.api.DTO;
+package met.vol.api.domain.DTO;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import met.vol.api.model.Endereco;
+import met.vol.api.domain.model.Endereco;
 
 public record DadosEndereco(
 

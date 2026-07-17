@@ -1,4 +1,4 @@
-package met.vol.api.controller;
+package met.vol.api.infra;
 
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;

@@ -1,27 +1,37 @@
-package met.vol.api.DTO.medico;
+package met.vol.api.domain.DTO.medico;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import met.vol.api.DTO.DadosEndereco;
-import met.vol.api.model.Especialidade;
-import met.vol.api.model.Medico;
+import met.vol.api.domain.DTO.DadosEndereco;
+import met.vol.api.domain.model.Especialidade;
+import met.vol.api.domain.model.Medico;
 
 public record DadosCadastroMedico (
         
-        @NotBlank String nome,
+        @NotBlank(message = "Como um médico será cadastrado no sistema sem que seu nome seja informado?") String nome,
 
-        @NotBlank @Email String email,
+        @NotBlank(message = "O email do médico precisa ser informado para cadastrá-lo no sistema.")
 
-        @NotBlank @Pattern(regexp = "^\\(\\d{2}\\)\\s?\\d{4,5}-\\d{4}$") String telefone,
+        @Email(message = "O email do médico precisa seguir o formato 'usuario@dominio.serviço' para cadastrá-lo no sistema.") String email,
 
-        @NotNull @Pattern(regexp = "\\d{4,6}") String crm,// buga, se eu usar long
+        @NotBlank(message = "O telefone do médico precisa ser informado para cadastrá-lo no sistema.")
 
-        @NotNull Especialidade especialidade,
+        @Pattern(regexp = "^\\(\\d{2}\\)\\s?\\d{4,5}-\\d{4}$", message = "O telefone do médico precisa seguir o formato '^\\(\\d{2}\\)\\s?\\d{4,5}-\\d{4}$' para cadastrá-lo no sistema.")
 
-        @NotNull @Valid DadosEndereco endereco
+        String telefone,
+
+        @NotNull(message = "Médicos sem comprovante de registro médico não podem se cadastrar nesta API. Questão de segurança pública.")
+
+        @Pattern(regexp = "\\d{4,6}", message = "O comprovante de registro médico do médico precisa seguir o formato '\\d{4,6}' para cadastrá-lo no sistema.")
+
+        String crm,// buga, se eu usar long
+
+        @NotNull(message = "Como um médico será cadastrado no sistema sem aquilo que ele faz ser informado?") Especialidade especialidade,
+
+        @NotNull(message = "Informe o endereço do médico.") @Valid DadosEndereco endereco
 ) {
 
     public DadosCadastroMedico (String nome, String email, String telefone, String crm, String especialidade, DadosEndereco esteEndereco) {

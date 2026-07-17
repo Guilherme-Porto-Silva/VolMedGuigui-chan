@@ -1,6 +1,6 @@
-package met.vol.api.repository;
+package met.vol.api.domain.repository;
 
-import met.vol.api.model.Paciente;
+import met.vol.api.domain.model.Paciente;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,10 +1,10 @@
-package met.vol.api.service;
+package met.vol.api.domain.service;
 
-import met.vol.api.DTO.paciente.DadosAtualizacaoPaciente;
-import met.vol.api.DTO.paciente.DadosCadastroPaciente;
-import met.vol.api.DTO.paciente.DadosListagemPaciente;
-import met.vol.api.model.Paciente;
-import met.vol.api.repository.PacienteRepository;
+import met.vol.api.domain.DTO.paciente.DadosAtualizacaoPaciente;
+import met.vol.api.domain.DTO.paciente.DadosCadastroPaciente;
+import met.vol.api.domain.DTO.paciente.DadosListagemPaciente;
+import met.vol.api.domain.model.Paciente;
+import met.vol.api.domain.repository.PacienteRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;

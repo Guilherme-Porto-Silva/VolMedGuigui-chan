@@ -1,10 +1,10 @@
-package met.vol.api.model;
+package met.vol.api.domain.model;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import met.vol.api.DTO.DadosEndereco;
+import met.vol.api.domain.DTO.DadosEndereco;
 
 @Getter @Setter @Embeddable @AllArgsConstructor public class Endereco {
 

@@ -1,7 +1,7 @@
-package met.vol.api.DTO.paciente;
+package met.vol.api.domain.DTO.paciente;
 
-import met.vol.api.DTO.DadosEndereco;
-import met.vol.api.model.Paciente;
+import met.vol.api.domain.DTO.DadosEndereco;
+import met.vol.api.domain.model.Paciente;
 
 public record DadosCadastroPaciente (String nome, String email, String telefone, String cpf, DadosEndereco endereco) {
 

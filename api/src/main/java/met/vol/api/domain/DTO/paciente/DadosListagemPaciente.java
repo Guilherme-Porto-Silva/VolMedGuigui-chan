@@ -1,6 +1,6 @@
-package met.vol.api.DTO.paciente;
+package met.vol.api.domain.DTO.paciente;
 
-import met.vol.api.model.Paciente;
+import met.vol.api.domain.model.Paciente;
 
 public record DadosListagemPaciente (String nome, String email, String cpf) {
 

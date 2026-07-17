@@ -1,11 +1,11 @@
-package met.vol.api.model;
+package met.vol.api.domain.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import met.vol.api.DTO.paciente.DadosCadastroPaciente;
+import met.vol.api.domain.DTO.paciente.DadosCadastroPaciente;
 
 @AllArgsConstructor @Entity @Getter @Setter @EqualsAndHashCode(of = "id") public class Paciente {
 
