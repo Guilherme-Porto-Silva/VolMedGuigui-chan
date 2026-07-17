@@ -1,4 +1,4 @@
-package met.vol.api.infra;
+package met.vol.api.domain.service;
 
 import met.vol.api.domain.repository.UsuarioRepository;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,11 +6,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service public class Identificador implements UserDetailsService {
+@Service public class IdentificadorService implements UserDetailsService {
 
     private UsuarioRepository BANCO;
 
-    public Identificador (UsuarioRepository banco) { BANCO = banco; }
+    public IdentificadorService (UsuarioRepository banco) { BANCO = banco; }
 
     @Override public UserDetails loadUserByUsername (String username) throws UsernameNotFoundException {
 
