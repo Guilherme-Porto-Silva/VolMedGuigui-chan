@@ -7,9 +7,10 @@ import met.vol.api.domain.model.Medico;
 import met.vol.api.domain.repository.MedicoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-public class MedicoService {
+@Service public class MedicoService {
 
     private MedicoRepository BANCO;
 

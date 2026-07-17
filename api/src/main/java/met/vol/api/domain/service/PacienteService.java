@@ -7,9 +7,10 @@ import met.vol.api.domain.model.Paciente;
 import met.vol.api.domain.repository.PacienteRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-public class PacienteService {
+@Service public class PacienteService {
 
     private PacienteRepository BANCO;
 
