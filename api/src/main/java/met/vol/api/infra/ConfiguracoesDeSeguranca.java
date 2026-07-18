@@ -18,7 +18,16 @@ import org.springframework.security.web.SecurityFilterChain;
 
         return http.csrf(AbstractHttpConfigurer::disable).sessionManagement(
 
-        sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
+        sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+
+                .authorizeHttpRequests(req -> {
+
+                    req.requestMatchers("/login").permitAll();
+
+                    req.anyRequest().authenticated();
+                })
+
+                .build();
     }
 
     @Bean public AuthenticationManager autentificar (AuthenticationConfiguration config) {
