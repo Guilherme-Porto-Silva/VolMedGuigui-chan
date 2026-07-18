@@ -2,6 +2,7 @@ package met.vol.api.controller;
 
 import jakarta.validation.Valid;
 import met.vol.api.domain.DTO.DadosDoLogin;
+import met.vol.api.domain.DTO.DadosTokenJWT;
 import met.vol.api.domain.model.Usuario;
 import met.vol.api.domain.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,12 @@ import org.springframework.web.bind.annotation.RestController;
 
     @PostMapping public ResponseEntity logar (@RequestBody @Valid DadosDoLogin dados) {
 
-        var token = new UsernamePasswordAuthenticationToken(dados.usuario(), dados.senha());
+        var tokenSpring = new UsernamePasswordAuthenticationToken(dados.usuario(), dados.senha());
 
-        var autenticacao = A.authenticate(token);
+        var autenticacao = A.authenticate(tokenSpring);
 
-        return ResponseEntity.ok(TS.gerar((Usuario) autenticacao.getPrincipal()));
+        var tokenJWT = TS.gerar((Usuario) autenticacao.getPrincipal());
+
+        return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
     }
 }

@@ -11,6 +11,8 @@ import java.time.ZoneOffset;
 
 @Service public class TokenService {
 
+    private final String HMAC256_CHAVE = System.getenv("HMAC256_CHAVE");
+
     private Instant definirExpiracao () {
 
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
@@ -23,16 +25,16 @@ import java.time.ZoneOffset;
             
             .withIssuer("VolMed")// emissor do token
             
-            .withSubject(u.getLogin())// receptor do token
+            .withSubject(u.getNomeUsuario())// receptor do token
             
             .withClaim("id", u.getId())// uma das informações contidas pelo token
 
             .withExpiresAt(definirExpiracao())// data de validade do token
             
-            .sign(Algorithm.HMAC256(System.getenv("HMAC256_CHAVE")));
+            .sign(Algorithm.HMAC256(HMAC256_CHAVE));
         }
 
-        catch (JWTCreationException exception){
+        catch (JWTCreationException exception) {
 
             throw new IllegalArgumentException("Configuração de assinatura inválida. Não foi possível converter as declarações.");
         }
