@@ -30,7 +30,7 @@ import java.io.IOException;
 
         var cabecalho = requisicao.getHeader("Authorization");
 
-        if (cabecalho != null) cabecalho.replace("Bearer ", "");
+        if (cabecalho != null) return cabecalho.replace("Bearer ", "");
 
         return null;
     }
@@ -52,6 +52,8 @@ import java.io.IOException;
               var autenticacao = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
 
               SecurityContextHolder.getContext().setAuthentication(autenticacao);
+
+              System.out.println('\n' + nomeUsuario + " fez uma requisição.");
 
               filterChain.doFilter(request, response);
           }
