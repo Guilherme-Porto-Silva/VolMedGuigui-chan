@@ -1,5 +1,5 @@
-alter table medicos add ativo tinyint;
+alter table consultas add cancelada tinyint;
 
-update medicos set ativo = 1;
+update consultas set cancelada = 0;
 
-alter table medicos modify ativo tinyint not null;
+alter table consultas modify cancelada tinyint not null;

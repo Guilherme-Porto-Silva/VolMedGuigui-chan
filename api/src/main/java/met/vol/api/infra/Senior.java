@@ -17,6 +17,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
     private record DadosErroValidacao (String erro, String mensagem) {}
 
+    @ExceptionHandler(NullPointerException.class) public ResponseEntity
+
+        erroImprevisto () {
+
+            return ResponseEntity.internalServerError().body("""
+                    Encontramos um cenário que nossos desenvolvedores não tinham previsto.
+                    Por gentileza, entre em contato com a nossa equipe de suporte e descreva
+                    detalhadamente o que você fez quando este erro ocorreu para que possamos corrigi-lo."""
+            );
+        }
+
     @ExceptionHandler(EntityNotFoundException.class) public ResponseEntity
 
         recursoNaoEncontrado () {
@@ -28,9 +39,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
         requisicaoMalFeita (MethodArgumentNotValidException e) {
 
-            return ResponseEntity.badRequest().body(e.getFieldErrors().stream()
+            return ResponseEntity.badRequest().body(e.getFieldErrors().stream().map(
 
-              .map(erro -> new DadosErroValidacao(erro.getField(), erro.getDefaultMessage
+              erro -> new DadosErroValidacao(erro.getField(), erro.getDefaultMessage
 
                  ())).toList());
         }
@@ -48,7 +59,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
             return ResponseEntity.badRequest().body(
 
-                    "Se uma requisição POST com multipart/form-data vier corrompida, violar os limites rígidos de tamanho do Tomcat antes mesmo do Spring validar os parâmetros, ou se o container falhar ao abrir o stream temporário do arquivo, a API de Servlet subjacente pode lançar uma ServletException diretamente."
+              "Se uma requisição POST com multipart/form-data vier corrompida, violar os limites rígidos de tamanho do Tomcat antes mesmo do Spring validar os parâmetros, ou se o container falhar ao abrir o stream temporário do arquivo, a API de Servlet subjacente pode lançar uma ServletException diretamente."
             );
         }
 
