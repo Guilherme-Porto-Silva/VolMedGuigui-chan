@@ -25,7 +25,7 @@ import java.util.Optional;
 
     @Autowired private List<ValidadorAgendamentoConsulta> validadores;
 
-    public ConsultaService(ConsultaRepository agenda, MedicoRepository medicosCadastrados, PacienteRepository pacientesCadastrados) {
+    public ConsultaService (ConsultaRepository agenda, MedicoRepository medicosCadastrados, PacienteRepository pacientesCadastrados) {
 
         AGENDA = agenda;
 
@@ -50,11 +50,9 @@ import java.util.Optional;
 
         validadores.forEach(v -> v.testar(dados));
 
-        Medico consultante;
+        Medico consultante = optionalMedico.orElseGet(() -> AGENDA.escolherMedico(dados.necessidade(), dados.data()));
 
-        if (optionalMedico.isEmpty()) consultante = AGENDA.escolherMedico(dados.necessidade(), dados.data());
-
-        else consultante = optionalMedico.get();
+        if (consultante == null) throw new IllegalArgumentException("Nenhum médico está livre nesse horário.");
 
         Paciente consultado = optionalPaciente.get();
 

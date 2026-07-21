@@ -35,7 +35,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
                 HttpMethod.POST, "/login")// Fazer um POST para "/login",
 
-                .permitAll();// permita todos.
+                .permitAll()// permita todos.
+
+        .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll();// acessar a documentação gerada pelo SpringDoc sem precisar estar logado
 
             req.anyRequest().authenticated();
         })

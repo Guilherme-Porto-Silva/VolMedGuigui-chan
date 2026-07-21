@@ -1,5 +1,6 @@
 package met.vol.api.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import met.vol.api.domain.DTO.paciente.DadosAtualizacaoPaciente;
 import met.vol.api.domain.DTO.paciente.DadosCadastroPaciente;
@@ -14,7 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-@RestController @RequestMapping("/pacientes")
+@SecurityRequirement(name = "bearer-key") @RestController @RequestMapping("/pacientes")
 
 public class PacienteController {
 
