@@ -7,23 +7,38 @@ import met.vol.api.domain.model.Paciente;
 import met.vol.api.domain.repository.ConsultaRepository;
 import met.vol.api.domain.repository.MedicoRepository;
 import met.vol.api.domain.repository.PacienteRepository;
+import met.vol.api.domain.validacao.ValidadorAgendamentoConsulta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service public class ConsultaService {
 
-    @Autowired private ConsultaRepository agenda;
+    private final ConsultaRepository AGENDA;
 
-    @Autowired private MedicoRepository medicosCadastrados;
+    private final MedicoRepository MEDICOS_CADASTRADOS;
 
-    @Autowired private PacienteRepository pacientesCadastrados;
-    
+    private final PacienteRepository PACIENTES_CADASTRADOS;
+
+    @Autowired private List<ValidadorAgendamentoConsulta> validadores;
+
+    public ConsultaService(ConsultaRepository agenda, MedicoRepository medicosCadastrados, PacienteRepository pacientesCadastrados) {
+
+        AGENDA = agenda;
+
+        MEDICOS_CADASTRADOS = medicosCadastrados;
+
+        PACIENTES_CADASTRADOS = pacientesCadastrados;
+    }
+
     public Consulta agendar (DadosAgendamentoConsulta dados) {
 
-        Optional<Medico> optionalMedico = medicosCadastrados.findById(dados.idMedico());
+        Optional<Medico> optionalMedico = MEDICOS_CADASTRADOS.findById(dados.idMedico());
         
-        Optional<Paciente> optionalPaciente = pacientesCadastrados.findById(dados.idPaciente());
+        Optional<Paciente> optionalPaciente = PACIENTES_CADASTRADOS.findById(dados.idPaciente());
 
         if (optionalPaciente.isEmpty())
 
@@ -33,9 +48,11 @@ import java.util.Optional;
 
             throw new IllegalArgumentException("Não conseguimos escolher um médico aleatoriamente sem sabermos por qual especialidade o paciente demanda.");
 
+        validadores.forEach(v -> v.testar(dados));
+
         Medico consultante;
 
-        if (optionalMedico.isEmpty()) consultante = agenda.escolherMedico(dados.necessidade(), dados.data());
+        if (optionalMedico.isEmpty()) consultante = AGENDA.escolherMedico(dados.necessidade(), dados.data());
 
         else consultante = optionalMedico.get();
 
@@ -43,7 +60,7 @@ import java.util.Optional;
 
         Consulta agendada = new Consulta(consultado, consultante, dados.data());
 
-        agenda.save(agendada);
+        AGENDA.save(agendada);
 
         System.out.println("\nAgendando uma consulta com os seguintes dados:");
 
@@ -52,9 +69,9 @@ import java.util.Optional;
         return agendada;
     }
 
-    public void cancelar (Long id) {
+    @Transactional public void cancelar (Long id) {
         
-        Optional<Consulta> optionalConsulta = agenda.findById(id);
+        Optional<Consulta> optionalConsulta = AGENDA.findById(id);
         
         if (optionalConsulta.isPresent()) {
 
@@ -66,5 +83,7 @@ import java.util.Optional;
 
             System.out.println(apagada);
         }
+
+        else throw new IllegalArgumentException("Nenhuma consulta está IDentificada como " + id);
     }
 }

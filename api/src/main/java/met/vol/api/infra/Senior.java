@@ -2,7 +2,6 @@ package met.vol.api.infra;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.ServletException;
-import met.vol.api.domain.exception.TokenInvalido;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -46,11 +45,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
                  ())).toList());
         }
 
-    @ExceptionHandler(TokenInvalido.class) public ResponseEntity
+    @ExceptionHandler(IllegalArgumentException.class) public ResponseEntity
 
-      desvalidacaoDeToken (TokenInvalido t) {
+      claimIllegalArgument (IllegalArgumentException argument) {
 
-        return ResponseEntity.badRequest().body(t.getMessage());
+        return ResponseEntity.badRequest().body(argument.getMessage());
     }
 
     @ExceptionHandler(ServletException.class) public ResponseEntity
