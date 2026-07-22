@@ -8,7 +8,7 @@ import lombok.Setter;
 import met.vol.api.domain.DTO.medico.DadosCadastroMedico;
 import met.vol.api.domain.service.Tecnico;
 
-@Entity @Getter @Setter @AllArgsConstructor @EqualsAndHashCode(of = "id") public class Medico {
+@Entity @Getter @Setter @EqualsAndHashCode(of = "id") public class Medico {
 
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE) private Long id;
 
@@ -25,6 +25,17 @@ import met.vol.api.domain.service.Tecnico;
     private Endereco endereco;
 
     private Boolean ativo = true;
+
+    public Medico (String nome, String email, String crm, Especialidade especialidade) {
+
+        this.nome = nome;
+
+        this.email = email;
+
+        this.crm = crm;
+
+        this.especialidade = especialidade;
+    }
 
     public Medico (DadosCadastroMedico dados) {
 

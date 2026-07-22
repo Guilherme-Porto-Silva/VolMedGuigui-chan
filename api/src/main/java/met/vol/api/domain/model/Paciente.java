@@ -38,6 +38,15 @@ import met.vol.api.domain.DTO.paciente.DadosCadastroPaciente;
 
     public Paciente () {}
 
+    public Paciente (String nome, String email, String cpf) {
+
+        this.nome = nome;
+
+        this.email = email;
+
+        this.cpf = cpf;
+    }
+
     @Override public String toString () {
 
         DadosCadastroPaciente dto = new DadosCadastroPaciente(this);
