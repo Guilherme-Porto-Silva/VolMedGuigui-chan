@@ -2,10 +2,9 @@ package met.vol.api.domain.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.time.LocalDateTime;
 
-@Entity(name = "consultas") @Table(name = "consultas") @Getter @Setter
+@Entity @Table(name = "consultas") @Getter @Setter
 
 @EqualsAndHashCode(of = "id") public class Consulta {
 

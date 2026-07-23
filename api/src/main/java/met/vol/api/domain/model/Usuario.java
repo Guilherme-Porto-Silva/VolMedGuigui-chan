@@ -15,7 +15,7 @@ import java.util.List;
 
 @Getter @AllArgsConstructor @NoArgsConstructor @EqualsAndHashCode(of = "id")
 
-@Entity(name = "Usuario") @Table(name = "usuarios") public class Usuario implements UserDetails {
+@Entity @Table(name = "usuarios") public class Usuario implements UserDetails {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id;
 
