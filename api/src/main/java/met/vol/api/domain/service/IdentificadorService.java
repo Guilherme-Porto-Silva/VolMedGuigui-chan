@@ -14,6 +14,6 @@ import org.springframework.stereotype.Service;
 
     @Override public UserDetails loadUserByUsername (String username) throws UsernameNotFoundException {
 
-        return BANCO.findByLogin(username);
+        return BANCO.findByNomeUsuario(username);
     }
 }

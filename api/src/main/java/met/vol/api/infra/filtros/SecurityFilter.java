@@ -47,7 +47,7 @@ import java.io.IOException;
 
               var nomeUsuario = TS.validar(token);
 
-              var usuario = BANCO.findByLogin(nomeUsuario);
+              var usuario = BANCO.findByNomeUsuario(nomeUsuario);
 
               var autenticacao = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
 
