@@ -10,6 +10,4 @@ import java.time.LocalDateTime;
 public interface MedicoRepository extends JpaRepository<Medico, Long> {
 
     Page<Medico> findAllByAtivoTrue(Pageable p);
-
-    boolean existsByMedicoIdAndData(Long id, LocalDateTime data);
 }

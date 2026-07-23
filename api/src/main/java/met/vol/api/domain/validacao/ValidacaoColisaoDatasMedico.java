@@ -1,14 +1,14 @@
 package met.vol.api.domain.validacao;
 
 import met.vol.api.domain.DTO.consulta.DadosAgendamentoConsulta;
-import met.vol.api.domain.repository.MedicoRepository;
+import met.vol.api.domain.repository.ConsultaRepository;
 import org.springframework.stereotype.Component;
 
 @Component public class ValidacaoColisaoDatasMedico implements ValidadorAgendamentoConsulta {
 
-    private final MedicoRepository BANCO;
+    private final ConsultaRepository BANCO;
 
-    public ValidacaoColisaoDatasMedico(MedicoRepository banco) { BANCO = banco; }
+    public ValidacaoColisaoDatasMedico(ConsultaRepository banco) { BANCO = banco; }
 
     @Override public void testar (DadosAgendamentoConsulta agendamento) {
 
